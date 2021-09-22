@@ -12,24 +12,34 @@ class Body extends Component {
     }
   }
 
+
+
+
 componentDidMount(){
   this.AtualizaContadorCurtidas();
 }
 
  salvar = (curtidas) => {
-     debugger;
+     debugger;     
     // curtidas.qtdeCurtidas = curtidas.qtdeCurtidas + 1
      let id = curtidas.idCurtida
      this.setState({ curtidas });
-     axios.put('/Curtidas/'+ 'idCurtida?=' +curtidas.idCurtida, curtidas).then(response => {        
-   })
+     axios.post('api/Curtidas',{     
+      TotalCurtidas: 1,
+      DataAtualizacao: '2021-09-22T00:39:39.136Z',    
+      IdUsuario: 1
+     }).then(res =>
+      { 
+        this.setState({qtdeCurtidas: res.data.data.result.value });        
+        console.log(res.data)
+      })
  }
 
  AtualizaContadorCurtidas() {
     debugger;    
      axios.get('/api/Curtidas/TotalCurtidas').then(response => {
       debugger;
-      const curtidas = response.data.data;      
+      const curtidas = response.data.data.value;      
       this.setState({qtdeCurtidas: curtidas });
     }).catch();
   }
