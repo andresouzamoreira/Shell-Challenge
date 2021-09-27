@@ -6,8 +6,10 @@ import './App.css';
 function App() {
   return (
     <div>
-        <Header></Header>
-        <Body></Body>
+         
+        <Header></Header>       
+        <Body></Body>        
+     
     </div>
 
   );

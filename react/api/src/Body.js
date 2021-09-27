@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2MzI3NDI3MDAsImV4cCI6MTYzMjc0NjMwMCwiaWF0IjoxNjMyNzQyNzAwLCJpc3MiOiJDaGFsbGVuZ2VTeXN0ZW0iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdCJ9.-JFgtW75DHpHeePslpddjUnZAXizOpH8v7XXAHbXUR4';
 class Body extends Component {
 
   state = {
@@ -12,10 +12,8 @@ class Body extends Component {
     }
   }
 
-
-
-
 componentDidMount(){
+  debugger;  
   this.AtualizaContadorCurtidas();
 }
 
@@ -25,20 +23,20 @@ componentDidMount(){
      let id = curtidas.idCurtida
      this.setState({ curtidas });
      axios.post('api/Curtidas',{     
-      TotalCurtidas: 1,
+      TotalCurtidas: 1,      
       DataAtualizacao: '2021-09-22T00:39:39.136Z',    
       IdUsuario: 1
-     }).then(res =>
-      { 
-        this.setState({qtdeCurtidas: res.data.data.result.value });        
+     },{ headers: {"Authorization" : `Bearer ${token}`} }).then(res =>
+      {                 
+        this.AtualizaContadorCurtidas();
         console.log(res.data)
       })
  }
 
  AtualizaContadorCurtidas() {
     debugger;    
-     axios.get('/api/Curtidas/TotalCurtidas').then(response => {
-      debugger;
+     axios.get('/api/Curtidas/TotalCurtidas',{ headers: {"Authorization" : `Bearer ${token}`} }).then(response => {
+      debugger;      
       const curtidas = response.data.data.value;      
       this.setState({qtdeCurtidas: curtidas });
     }).catch();

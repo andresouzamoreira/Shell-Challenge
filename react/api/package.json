@@ -2,7 +2,7 @@
   "name": "api",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://localhost:44368",
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -18,7 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "nodemon index.js --ignore client"
   },
   "eslintConfig": {
     "extends": "react-app"
