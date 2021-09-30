@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2MzI3NDI3MDAsImV4cCI6MTYzMjc0NjMwMCwiaWF0IjoxNjMyNzQyNzAwLCJpc3MiOiJDaGFsbGVuZ2VTeXN0ZW0iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdCJ9.-JFgtW75DHpHeePslpddjUnZAXizOpH8v7XXAHbXUR4';
+let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2MzI5MTMzNjgsImV4cCI6MTYzMjkxNjk2OCwiaWF0IjoxNjMyOTEzMzY4LCJpc3MiOiJDaGFsbGVuZ2VTeXN0ZW0iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdCJ9.OWJN9O9sgCcbXmNRLCrZG17x7s0y1JyxSnzFkym_zz8';
 class Body extends Component {
 
   state = {
@@ -39,7 +39,11 @@ componentDidMount(){
       debugger;      
       const curtidas = response.data.data.value;      
       this.setState({qtdeCurtidas: curtidas });
-    }).catch();
+    }).catch(
+      function (error) {
+        alert('Token inválido');
+        return Promise.reject(error)
+      });
   }
 
 render(){ return <main className="bd-masthead" id="content" role="main">
